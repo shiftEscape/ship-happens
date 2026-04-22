@@ -1,0 +1,50 @@
+name: "Ship Happens"
+description: "🚢 Automatically stamps a deployment audit record on your PR — environment, approver, timestamp, and run link. Because ship happens."
+author: "shiftEscape"
+
+branding:
+  icon: "anchor"
+  color: "blue"
+
+inputs:
+  token:
+    description: "GitHub token. Needs repo scope (PAT) to fetch environment approvers. Use GITHUB_TOKEN for basic usage without approver info."
+    required: true
+
+  environment:
+    description: "The environment that was deployed to (e.g. production, staging, development)."
+    required: true
+
+  status:
+    description: "Deployment status. One of: success, failure, cancelled."
+    required: true
+    default: "success"
+
+  custom-message:
+    description: "Optional extra note appended to the audit comment (e.g. 'Hotfix for login bug')."
+    required: false
+    default: ""
+
+  update-comment:
+    description: "If true, updates an existing Ship Happens comment on the PR instead of creating a new one."
+    required: false
+    default: "true"
+
+  post-on-commit:
+    description: "If true and no PR is found for the branch, posts the audit record as a commit comment instead."
+    required: false
+    default: "true"
+
+outputs:
+  comment-id:
+    description: "The ID of the comment posted on the PR or commit."
+
+  pr-number:
+    description: "The PR number where the comment was posted. Empty if posted on a commit."
+
+  approver:
+    description: "The GitHub login of the user who approved the deployment. Empty if no approver found or token lacks permissions."
+
+runs:
+  using: "node20"
+  main: "dist/index.js"

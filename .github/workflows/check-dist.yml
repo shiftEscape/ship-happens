@@ -1,0 +1,43 @@
+name: Check dist
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "package.json"
+      - "package-lock.json"
+
+jobs:
+  check-dist:
+    name: Verify dist is up to date
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild dist
+        run: npm run build
+
+      - name: Check for uncommitted changes
+        run: |
+          if [ -n "$(git status --porcelain dist/)" ]; then
+            echo "❌ dist/ is out of sync with src/."
+            echo "   Run 'npm run build' locally and commit the updated dist/."
+            echo ""
+            git diff dist/
+            exit 1
+          else
+            echo "✅ dist/ is up to date."
+          fi

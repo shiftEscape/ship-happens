@@ -1,0 +1,31 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production  # Required for approver detection
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ------ Your actual deploy steps go here ------
+      - name: Deploy
+        run: |
+          echo "Deploying to production..."
+          # your deploy script here
+
+      # ------ Ship Happens — stamp the audit record ------
+      - name: Stamp deployment record
+        if: always()  # runs even if deploy step fails
+        uses: shiftEscape/ship-happens@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: production
+          status: ${{ job.status }}
+          custom-message: "Deployed via main branch push"  # optional
