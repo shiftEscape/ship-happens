@@ -1,5 +1,5 @@
-name: "Ship Happens"
-description: "🚢 Automatically stamps a deployment audit record on your PR — environment, approver, timestamp, and run link. Because ship happens."
+name: "ShipHappens"
+description: "🚢 Stamps a deployment audit record on your PR — environment, approver, timestamp, and run link."
 author: "shiftEscape"
 
 branding:
