@@ -1,6 +1,6 @@
-# 🚢 Ship Happens
+# Ship Happens Action
 
-[![License](https://img.shields.io/github/license/shiftEscape/ship-happens)](LICENSE)
+[![License](https://img.shields.io/github/license/shiftEscape/ship-happens?cacheSeconds=0)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/shiftEscape/ship-happens)](https://github.com/shiftEscape/ship-happens/issues)
 [![Stars](https://img.shields.io/github/stars/shiftEscape/ship-happens)](https://github.com/shiftEscape/ship-happens/stargazers)
 
@@ -18,15 +18,15 @@ When a deployment completes, Ship Happens posts this comment on the associated P
 
 🚢 **Ship Happens — Deployment Record**
 
-| | |
-|---|---|
-| 🔴 **Environment** | `production` |
-| ✅ **Status** | success |
-| 🙋 **Triggered by** | @shiftEscape |
-| 👤 **Approved by** | @tech-lead |
-| 🕐 **Timestamp** | 2026-04-22 08:43:11 UTC |
-| 🔗 **Run** | [View workflow run →](https://github.com/...) |
-| 💬 **Note** | Hotfix for login bug |
+|                     |                                               |
+| ------------------- | --------------------------------------------- |
+| 🔴 **Environment**  | `production`                                  |
+| ✅ **Status**       | success                                       |
+| 🙋 **Triggered by** | @shiftEscape                                  |
+| 👤 **Approved by**  | @tech-lead                                    |
+| 🕐 **Timestamp**    | 2026-04-22 08:43:11 UTC                       |
+| 🔗 **Run**          | [View workflow run →](https://github.com/...) |
+| 💬 **Note**         | Hotfix for login bug                          |
 
 ---
 
@@ -44,24 +44,24 @@ When a deployment completes, Ship Happens posts this comment on the associated P
 
 ## Inputs
 
-| Input | Required | Default | Description |
-|---|---|---|---|
-| `token` | ✅ | — | GitHub token. Use `GITHUB_TOKEN` for basic usage. Use a PAT with `repo` scope for approver detection. |
-| `environment` | ✅ | — | The environment deployed to (e.g. `production`, `staging`). |
-| `status` | ✅ | `success` | Deployment outcome: `success`, `failure`, or `cancelled`. Use `${{ job.status }}`. |
-| `custom-message` | ❌ | `""` | Optional note appended to the audit comment. |
-| `update-comment` | ❌ | `true` | Updates an existing Ship Happens comment instead of posting a new one. |
-| `post-on-commit` | ❌ | `true` | Posts on the commit if no open PR is found for the branch. |
+| Input            | Required | Default   | Description                                                                                           |
+| ---------------- | -------- | --------- | ----------------------------------------------------------------------------------------------------- |
+| `token`          | ✅       | —         | GitHub token. Use `GITHUB_TOKEN` for basic usage. Use a PAT with `repo` scope for approver detection. |
+| `environment`    | ✅       | —         | The environment deployed to (e.g. `production`, `staging`).                                           |
+| `status`         | ✅       | `success` | Deployment outcome: `success`, `failure`, or `cancelled`. Use `${{ job.status }}`.                    |
+| `custom-message` | ❌       | `""`      | Optional note appended to the audit comment.                                                          |
+| `update-comment` | ❌       | `true`    | Updates an existing Ship Happens comment instead of posting a new one.                                |
+| `post-on-commit` | ❌       | `true`    | Posts on the commit if no open PR is found for the branch.                                            |
 
 ---
 
 ## Outputs
 
-| Output | Description |
-|---|---|
-| `comment-id` | ID of the comment posted. |
-| `pr-number` | PR number where the comment was posted. Empty if posted on a commit. |
-| `approver` | GitHub login of the approver. Empty if no approval was required or token lacks permissions. |
+| Output       | Description                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| `comment-id` | ID of the comment posted.                                                                   |
+| `pr-number`  | PR number where the comment was posted. Empty if posted on a commit.                        |
+| `approver`   | GitHub login of the approver. Empty if no approval was required or token lacks permissions. |
 
 ---
 
@@ -69,12 +69,13 @@ When a deployment completes, Ship Happens posts this comment on the associated P
 
 Ship Happens tries to fetch who approved the deployment via GitHub's environment protection rules API.
 
-| Token type | Approver shown? |
-|---|---|
-| `GITHUB_TOKEN` | ⚠️ May not work — limited API permissions |
-| PAT with `repo` scope | ✅ Full approver detection |
+| Token type            | Approver shown?                           |
+| --------------------- | ----------------------------------------- |
+| `GITHUB_TOKEN`        | ⚠️ May not work — limited API permissions |
+| PAT with `repo` scope | ✅ Full approver detection                |
 
 To use a PAT:
+
 1. Create a personal access token with `repo` scope at [github.com/settings/tokens](https://github.com/settings/tokens)
 2. Add it as a repository secret (e.g. `DEPLOY_TOKEN`)
 3. Use `token: ${{ secrets.DEPLOY_TOKEN }}` in the action input
@@ -102,7 +103,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production  # Required for approver detection
+    environment: production # Required for approver detection
 
     steps:
       - name: Checkout
