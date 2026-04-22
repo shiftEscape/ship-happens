@@ -1,8 +1,8 @@
-# Ship Happens Action
+# Ship Happens
 
 [![License](https://img.shields.io/github/license/shiftEscape/ship-happens?cacheSeconds=0)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/shiftEscape/ship-happens)](https://github.com/shiftEscape/ship-happens/issues)
-[![Stars](https://img.shields.io/github/stars/shiftEscape/ship-happens)](https://github.com/shiftEscape/ship-happens/stargazers)
+[![Stars](https://img.shields.io/github/stars/shiftEscape/ship-happens?cacheSeconds=0)](https://github.com/shiftEscape/ship-happens/stargazers)
 
 > **Because ship happens.**
 
