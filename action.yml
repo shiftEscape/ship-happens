@@ -1,4 +1,4 @@
-name: "ShipHappens"
+name: "Ship Happens Action"
 description: "🚢 Stamps a deployment audit record on your PR — environment, approver, timestamp, and run link."
 author: "shiftEscape"
 
